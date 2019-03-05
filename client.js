@@ -66,38 +66,104 @@ console.log( employees );
   console.log(object);
 } */
 
-let bonus = 0;
+// let bonus = 0;
 
-function EmployeeBonuses(employees){
+// function EmployeeBonuses(employees){
   
-  for (i=0; i<employees.length; i++){
-    if(employees[i].reviewRating <= 2){
-      bonus = 0;
-      console.log(employees[i].name, bonus);
-    }
-    else if(employees[i].reviewRating === 3){
-      if (employees[i].employeeNumber.length >= 4) {
-        bonus = employees[i].annualSalary * 0.09;
-      }
-        bonus = employees[i].annualSalary * 0.04;
-      console.log(employees[i].name, bonus);
-    }
-    else if (employees[i].reviewRating === 4) {
-      bonus = employees[i].annualSalary * .06;
-      console.log(employees[i].name, bonus);
-    }
-    else if (employees[i].reviewRating === 5) {
-      bonus = employees[i].annualSalary * .1;
-      console.log(employees[i].name, bonus);
-    }
-    else if (employees[i].employeeNumber.length >= 4){
+//   for (i=0; i<employees.length; i++){
+//     if(employees[i].reviewRating <= 2){
+//       bonus = 0;
+//       console.log(employees[i].name, bonus);
+//     }
+//     else if(employees[i].reviewRating === 3){
+//       if (employees[i].employeeNumber.length >= 4) {
+//         bonus = employees[i].annualSalary * 0.09;
+//       }
+//         bonus = employees[i].annualSalary * 0.04;
+//       console.log(employees[i].name, bonus);
+//     }
+//     else if (employees[i].reviewRating === 4) {
+//       bonus = employees[i].annualSalary * .06;
+//       console.log(employees[i].name, bonus);
+//     }
+//     else if (employees[i].reviewRating === 5) {
+//       bonus = employees[i].annualSalary * .1;
+//       console.log(employees[i].name, bonus);
+//     }
+//     else if (employees[i].employeeNumber.length >= 4){
 
-     }
+//      }
 
     
-  }
-  return bonus;
+//   }
+//   return bonus;
   
+// }
+
+// console.log( 'Bonus is:', EmployeeBonuses( employees ) );
+
+
+//Mary's solution - 
+
+//SKELATON
+
+console.log(employees);
+
+function getBonusInfo(someEmployee) {
+let bonusPercentage = getBonusPercentage(someEmployee);
+//TO DO: ANNUAL SALARY MIGHT BE STRING - FIX LATER
+let employeeAnnual = someEmployee.annualSalary;
+let totalBonus = bonusPercentage/100 * employeeAnnual;
+let totalCompensation = totalBonus + employeeAnnual;
+let result = {
+  name: someEmployee.name,
+  bonusPercentage: totalBonus,
+  totalCompensation: totalCompensation,
+  totalBonus: totalBonus
+}
+return result;
 }
 
-console.log( 'Bonus is:', EmployeeBonuses( employees ) );
+function getBonusPercentage(someEmployee) {
+  let percentage = 0;
+  let rating = someEmployee.reviewRating;
+  if (rating <= 2) {
+    return percentage;
+  }
+  if (rating === 3 ) {
+   percentage = 4;
+  }
+  else if (rating === 4) {
+    percentage = 6;
+  }
+  else if (rating === 5) {
+    percentage = 10;
+  }
+
+  if (someEmployee.employeeNumber.length === 4) {
+    percentage = percentage + 5;
+  }
+
+  if (Number(someEmployee.annualSalary) > 65000 ) {
+    percentage = percentage - 1;
+  }
+
+  if (percentage > 13) {
+    percentage = 13;
+  } else if (percentage < 0) {
+    percentage = 0;
+  }
+
+  return percentage;
+
+
+}
+
+for (let i = 0; i <employees.lenth; i++ ) {
+let bonusInfo = getBonusInfo(employees[i]);
+console.log(`Bonus info for ${employees[i].name}:`, bonusInfo);
+}
+
+
+
+console.log(getBonusInfo(employees[1]));
