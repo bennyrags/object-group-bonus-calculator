@@ -41,3 +41,63 @@ const employees = [
 // Ask questions when you don't.
 
 console.log( employees );
+
+// The `name` property should contain the employee's name.
+//name = string 
+//employees.name
+
+// The `bonusPercentage` property should contain the bonus percentage the employee is to receive. See section below for calculation instructions.
+
+//bonusPercentage = number
+
+// The `totalCompensation` property should be the adjusted annual compensation (base annual + bonus)
+
+//annualSalary + annualSalary * bonus percentage
+
+// The `totalBonus` should be the employee's total bonus rounded to the nearest dollar.
+
+//annualSalary * bonus
+
+/* function EmployeeBonuses(employeesName, bonusPercentage, totalCompensation) {
+  this.name = employeesName;
+  this.percentage = bonusPercentage;
+  console.log (`This name is ${this.name}`);
+  console.log('This is the function');
+  console.log(object);
+} */
+
+let bonus = 0;
+
+function EmployeeBonuses(employees){
+  
+  for (i=0; i<employees.length; i++){
+    if(employees[i].reviewRating <= 2){
+      bonus = 0;
+      console.log(employees[i].name, bonus);
+    }
+    else if(employees[i].reviewRating === 3){
+      if (employees[i].employeeNumber.length >= 4) {
+        bonus = employees[i].annualSalary * 0.09;
+      }
+        bonus = employees[i].annualSalary * 0.04;
+      console.log(employees[i].name, bonus);
+    }
+    else if (employees[i].reviewRating === 4) {
+      bonus = employees[i].annualSalary * .06;
+      console.log(employees[i].name, bonus);
+    }
+    else if (employees[i].reviewRating === 5) {
+      bonus = employees[i].annualSalary * .1;
+      console.log(employees[i].name, bonus);
+    }
+    else if (employees[i].employeeNumber.length >= 4){
+
+     }
+
+    
+  }
+  return bonus;
+  
+}
+
+console.log( 'Bonus is:', EmployeeBonuses( employees ) );
